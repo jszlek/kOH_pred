@@ -1,12 +1,15 @@
+import h2o
 import streamlit as st
 from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
+from import_model import my_model, my_dummy_data
+
 
 # page and sidebar style
-st.set_page_config(
-    page_title="Reaction OH constant prediction",
-    page_icon=":microscope:",
-)
+# st.set_page_config(
+#     page_title="Reaction OH constant prediction",
+#     page_icon=":microscope:",
+# )
 
 st.markdown(
     """
@@ -26,20 +29,13 @@ st.markdown(
 )
 
 
-
 # defined functions
 def get_smiles():
     st.write(st.session_state.smiles_key)
 
 
-# Title 1
-st.markdown("# Page 2 ❄️")
-
-# sidebar
-st.sidebar.markdown("# Page 2 ❄️")
-
 # content
-st.title('View molecule Page')
+st.title('View and predict single molecule')
 
 # input SMILES
 smiles_input = st.text_input(label='Please enter SMILES',
@@ -57,3 +53,13 @@ try:
 except ValueError:
     st.markdown('__Cannot process SMILES into MOL.__')
     st.markdown('__Wrong SMILES format.__')
+
+
+# calculate dummy data of provided by user
+
+#my_model = main_page.my_model
+#my_dummy_data = main_page.my_dummy_data
+
+res = my_model.predict(h2o.H2OFrame(my_dummy_data))
+
+st.write(float(res.as_data_frame().iloc[0]))

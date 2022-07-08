@@ -2,10 +2,12 @@ import streamlit as st
 
 
 # page and sidebar style
-st.set_page_config(
-    page_title="Reaction OH constant prediction",
-    page_icon=":microscope:",
-)
+# st.set_page_config(
+#     page_title="Reaction OH constant prediction",
+#     page_icon=":microscope:",
+# )
+# st.write(st.state.SessionState.filtered_state.fget)
+
 
 st.markdown(
     """
