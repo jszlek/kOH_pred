@@ -28,4 +28,3 @@ st.markdown(
 
 
 st.markdown("# About")
-st.sidebar.markdown("# About")

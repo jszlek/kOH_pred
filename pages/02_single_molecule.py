@@ -3,15 +3,17 @@ import pandas as pd
 import streamlit as st
 from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
-from import_model import my_model, my_dummy_data
+from import_model import my_model
 from decimal import Decimal
 from mordred import Calculator, PathCount, Autocorrelation, MoeType
 
-# page and sidebar style
-# st.set_page_config(
-#     page_title="Reaction OH constant prediction",
-#     page_icon=":microscope:",
-# )
+
+# st.markdown(f'''
+#     <style>
+#         section[data-testid="stSidebar"] .css-ng1t4o {{width: 10rem;}}
+#         section[data-testid="stSidebar"] .css-1d391kg {{width: 10rem;}}
+#     </style>
+# ''',unsafe_allow_html=True)
 
 st.markdown(
     """
@@ -33,7 +35,7 @@ st.markdown(
 
 # defined functions
 def get_smiles():
-    st.write(st.session_state.smiles_key)
+    col1.write(st.session_state.smiles_key)
 
 
 def calculate_descriptors(smiles_format):
@@ -53,41 +55,53 @@ def calculate_descriptors(smiles_format):
 
 # content
 st.title('View and predict single molecule')
+# create column layout
+col1, col2 = st.columns(2)
+
 
 # input SMILES
-smiles_input = st.text_input(label='Please enter SMILES',
-                             value='COC(=O)c1c[nH]c2cc(OC(C)C)c(OC(C)C)cc2c1=O',
+smiles_input = col1.text_input(label='Please enter SMILES',
+                             value='CCCC(CCO)CCCCO',
                              on_change=get_smiles,
                              key='smiles_key')
+# input temperature in K
+temp_input = col1.slider(label='Please select temperature [K]',
+                       min_value=278, max_value=328, value=298,
+                       step=None, format=None, key=None, help=None,
+                       on_change=None, args=None, kwargs=None, disabled=False)
+
 # print out current SMILES
-st.write('The current SMILES is \n', smiles_input)
+with col1:
+    st.write('The current SMILES is \n', smiles_input)
 
 # process smiles into mol image
 try:
     mol = Chem.MolFromSmiles(smiles_input)
-    im = Draw.MolToImage(mol)
-    st.image(im)
-
+    im = Draw.MolToImage(mol, size=(300,200))
+    with col1:
+        st.image(im)
     my_df = calculate_descriptors(smiles_input)
-    # st.write(my_df.keys())
-    # st.write(my_df.values())
-    # st.write(my_df.asdict())
 
 except ValueError:
-    st.markdown('__Cannot process SMILES into MOL.__')
-    st.markdown('__Wrong SMILES format.__')
+    with col1:
+        st.markdown('__Cannot process SMILES into MOL.__')
+        st.markdown('__Wrong SMILES format.__')
 
 # st.markdown(my_df)
 my_df = pd.DataFrame([my_df.asdict()])
-my_df['Reaction_temp_K'] = 298
+my_df['Reaction_temp_K'] = temp_input
 
-st.dataframe(my_df)
+with col2:
+    st.markdown('### Input variables: ')
+    st.dataframe(my_df)
 
 # calculate dummy data of provided by user
 res = my_model.predict(h2o.H2OFrame(my_df))
 my_number = float(res.as_data_frame().iloc[0]*(10**9))
 my_decimal = '%.4E' % Decimal(my_number)
-st.markdown('## prediction: ' + str(my_decimal))
+
+with col2:
+    st.markdown('### Prediction: ' + str(my_decimal))
 
 
 # # if data changes recalculate descriptors, form new dataframe and make predictions

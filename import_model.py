@@ -3,13 +3,14 @@ import h2o
 import pandas as pd
 from PATHS import MODEL
 
+
 # run H2O server
 @st.cache
 def run_server_and_load_model():
     h2o.init()
     my_path = MODEL
-    my_model = h2o.load_model(my_path)
-    return my_model
+    model = h2o.load_model(my_path)
+    return model
 
 
 @st.cache
