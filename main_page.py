@@ -29,9 +29,10 @@ st.markdown(
 
 # page content
 st.markdown("# Main page 🎈")
-st.markdown('I am here!'
-            '')
-st.write("# Summary of model used")
+st.markdown('I am here!')
+st.markdown('Main page content')
+st.markdown('Please proceed to other pages (sidebar)')
+st.write("### Summary of model used")
 
 
 

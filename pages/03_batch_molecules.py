@@ -87,8 +87,8 @@ if uploaded_file is not None:
     dataframe = pd.read_csv(uploaded_file)
     # process dataframe rows into mol images and predictions
     # Iterating over two columns with use of `zip`
-    # image, smiles, prediction = [make_predictions(x, y) for x, y in zip(dataframe['SMILES'], dataframe['Reaction_temp_K'])]
-    prediction = [make_predictions(x, y) for x, y in zip(dataframe['SMILES'], dataframe['Reaction_temp_K'])]
+
+    prediction = [make_predictions(x, y) for x, y in zip(dataframe.iloc[:, 0], dataframe.iloc[:, 1])]
     # st.write(prediction)
     # result_dict = {'Image': image, 'SMILES': smiles, 'Prediction': prediction}
     result = pd.DataFrame.from_records(prediction)
