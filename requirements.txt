@@ -1,8 +1,8 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
-_libgcc_mutex=0.1=conda_forge
-_openmp_mutex=4.5=2_gnu
+# _libgcc_mutex=0.1=conda_forge
+# _openmp_mutex=4.5=2_gnu
 abseil-cpp=20210324.2=h9c3ff4c_0
 altair=4.2.0=pyhd8ed1ab_1
 argon2-cffi=21.3.0=pyhd8ed1ab_0
@@ -66,7 +66,7 @@ gitdb=4.0.9=pyhd8ed1ab_0
 gitpython=3.1.27=pyhd8ed1ab_0
 glog=0.6.0=h6f12383_0
 grpc-cpp=1.45.2=hd8f4eba_3
-h2o=3.36.0.2=py38_0
+http://h2o-release.s3.amazonaws.com/h2o/rel-zorn/2/Python/h2o-3.36.0.2-py2.py3-none-any.whl
 icu=70.1=h27087fc_0
 idna=3.3=pyhd8ed1ab_0
 importlib-metadata=4.11.4=py38h578d9bd_0
