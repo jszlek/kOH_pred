@@ -93,7 +93,8 @@ my_df['Reaction_temp_K'] = temp_input
 
 with col2:
     st.markdown('### Input variables: ')
-    st.dataframe(my_df)
+    print_df = my_df.astype(str)
+    st.dataframe(print_df)
 
 # calculate dummy data of provided by user
 res = my_model.predict(h2o.H2OFrame(my_df))
