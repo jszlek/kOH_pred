@@ -66,7 +66,7 @@ smiles_input = col1.text_input(label='Please enter SMILES',
                              key='smiles_key')
 # input temperature in K
 temp_input = col1.slider(label='Please select temperature [K]',
-                       min_value=278, max_value=328, value=298,
+                       min_value=278, max_value=323, value=298,
                        step=None, format=None, key=None, help=None,
                        on_change=None, args=None, kwargs=None, disabled=False)
 
