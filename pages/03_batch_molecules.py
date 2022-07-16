@@ -46,7 +46,7 @@ def make_predictions(smiles_format, temperature):
     my_df['Reaction_temp_K'] = temperature
     res = my_model.predict(h2o.H2OFrame(my_df))
     f_prediction = float(res.as_data_frame().iloc[0])
-    return {'Image': im, 'SMILES': smiles_format, 'Prediction': f_prediction}
+    return {'Image': im, 'SMILES': smiles_format, 'Temperature': temperature, 'Prediction': f_prediction}
 
 
 def image_base64(im):
