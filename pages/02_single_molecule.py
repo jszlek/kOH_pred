@@ -1,3 +1,15 @@
+# 02_single_molecule.py
+# kOH_pred, prediction of aqueous OH kinetics of saturated alcohols.
+# Copyright (C) 2022 Jakub Szlęk
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version. This program is
+# distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details. You should have received a copy of
+# the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+
 import h2o
 import pandas as pd
 import streamlit as st
@@ -6,14 +18,6 @@ from rdkit.Chem import Draw
 from import_model import my_model
 from decimal import Decimal
 from mordred import Calculator, PathCount, Autocorrelation, MoeType
-
-
-# st.markdown(f'''
-#     <style>
-#         section[data-testid="stSidebar"] .css-ng1t4o {{width: 10rem;}}
-#         section[data-testid="stSidebar"] .css-1d391kg {{width: 10rem;}}
-#     </style>
-# ''',unsafe_allow_html=True)
 
 st.markdown(
     """
@@ -58,17 +62,16 @@ st.title('View and predict single molecule')
 # create column layout
 col1, col2 = st.columns(2)
 
-
 # input SMILES
 smiles_input = col1.text_input(label='Please enter SMILES',
-                             value='CCCC(CCO)CCCCO',
-                             on_change=get_smiles,
-                             key='smiles_key')
+                               value='CCCC(CCO)CCCCO',
+                               on_change=get_smiles,
+                               key='smiles_key')
 # input temperature in K
 temp_input = col1.slider(label='Please select temperature [K]',
-                       min_value=278, max_value=323, value=298,
-                       step=None, format=None, key=None, help=None,
-                       on_change=None, args=None, kwargs=None, disabled=False)
+                         min_value=278, max_value=323, value=298,
+                         step=None, format=None, key=None, help=None,
+                         on_change=None, args=None, kwargs=None, disabled=False)
 
 # print out current SMILES
 with col1:
@@ -77,7 +80,7 @@ with col1:
 # process smiles into mol image
 try:
     mol = Chem.MolFromSmiles(smiles_input)
-    im = Draw.MolToImage(mol, size=(300,200))
+    im = Draw.MolToImage(mol, size=(300, 200))
     with col1:
         st.image(im)
     my_df = calculate_descriptors(smiles_input)
@@ -86,6 +89,7 @@ except ValueError:
     with col1:
         st.markdown('__Cannot process SMILES into MOL.__')
         st.markdown('__Wrong SMILES format.__')
+        my_df = None
 
 # st.markdown(my_df)
 my_df = pd.DataFrame([my_df.asdict()])
@@ -98,15 +102,8 @@ with col2:
 
 # calculate dummy data of provided by user
 res = my_model.predict(h2o.H2OFrame(my_df))
-my_number = float(res.as_data_frame().iloc[0]*(10**9))
+my_number = float(res.as_data_frame().iloc[0] * (10 ** 9))
 my_decimal = '%.4E' % Decimal(my_number)
 
 with col2:
     st.markdown('### Prediction: ' + str(my_decimal))
-
-
-# # if data changes recalculate descriptors, form new dataframe and make predictions
-# if st.session_state.smiles_key:
-#     mol = Chem.MolFromSmiles(smiles_input)
-#     im = Draw.MolToImage(mol)
-#     st.image(im)

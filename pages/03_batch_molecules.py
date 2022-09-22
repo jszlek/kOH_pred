@@ -1,3 +1,15 @@
+# 03_batch_molecules.py
+# kOH_pred, prediction of aqueous OH kinetics of saturated alcohols.
+# Copyright (C) 2022 Jakub Szlęk
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version. This program is
+# distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details. You should have received a copy of
+# the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+
 import h2o
 import base64
 import pandas as pd
@@ -58,6 +70,7 @@ def image_base64(im):
 def image_formatter(im):
     return f'<img src="data:image/png;base64,{image_base64(im)}">'
 
+
 st.markdown(
     """
     <style>
@@ -100,4 +113,4 @@ if uploaded_file is not None:
         file_name='result.csv',
         mime='text/csv',
     )
-    # predict_dataframe.to_excel('tmp.xlsx')
+

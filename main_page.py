@@ -1,6 +1,13 @@
 # kOH_pred.py
-# License
-# etc.
+# kOH_pred, prediction of aqueous OH kinetics of saturated alcohols.
+# Copyright (C) 2022 Jakub Szlęk
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version. This program is
+# distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details. You should have received a copy of
+# the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import streamlit as st
 
@@ -28,36 +35,19 @@ st.markdown(
 )
 
 # page content
-st.markdown("# Main page 🎈")
-st.markdown('I am here!')
-st.markdown('Main page content')
+st.markdown("### Homepage")
+st.markdown('Application kOH_pred is used to predict an aqueous OH kinetics of saturated alcohols.')
+st.markdown('This application is one of the results presented in publication: ')
+st.markdown('_Temperature-dependent aqueous OH kinetics of saturated alcohols; new structure-activity relationship models and atmospheric lifetimes_')
+st.markdown('by: _Bartłomiej Witkowski, Priyanka Jain, Jakub Szlęk, Beata Wileńska, and Tomasz Gierczak_')
+st.markdown('')
 st.markdown('Please proceed to other pages (sidebar)')
-st.write("### Summary of model used")
-
-
-
-# import streamlit as st
-
-# from SessionState import _get_state
-
-# st.write(st.session_state['page_config'])
+st.write('### Summary')
+st.markdown('kOH_pred, prediction of aqueous OH kinetics of saturated alcohols.')
+st.markdown('Copyright (C) 2022 Jakub Szlęk')
+st.markdown('This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.')
+st.markdown('The engine of the application uses a model developed by [H2O AutoML](https://docs.h2o.ai/h2o/latest-stable/h2o-docs/automl.html) software.')
+st.markdown('')
 
 
 st.session_state.update(st.session_state)
-
-
-# if 'page_config' not in st.session_state:
-#     st.session_state.page_config.page_title = 'Reaction OH constant prediction'
-#     st.session_state.page_config.page_icon = ":microscope:"
-
-# state = st.session_state._get_state()
-#
-#
-# state.page_config = st.set_page_config(
-#     page_title="Reaction OH constant prediction",
-#     page_icon=":microscope:",
-# )
-#
-# # rest of the code
-#
-# state.sync()
