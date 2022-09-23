@@ -37,7 +37,7 @@ def calculate_descriptors(smiles_format):
     calc1.register(Autocorrelation.GATS(order=3, prop='dv'))
     calc1.register(Autocorrelation.AATS(order=4, prop='dv'))
     calc1.register(Autocorrelation.AATS(order=4, prop='d'))
-    calc1.register(Autocorrelation.AATS(order=7, prop='pe'))
+    calc1.register(Autocorrelation.ATSC(order=7, prop='pe'))
     calc1.register(MoeType.EState_VSA(2))
     desc = calc1(mol_format)
     return desc
@@ -58,7 +58,7 @@ def make_predictions(smiles_format, temperature):
     my_df['Reaction_temp_K'] = temperature
     res = my_model.predict(h2o.H2OFrame(my_df))
     f_prediction = float(res.as_data_frame().iloc[0])
-    return {'Image': im, 'SMILES': smiles_format, 'Temperature': temperature, 'Prediction': f_prediction}
+    return {'Image': im, 'SMILES': smiles_format, 'Temperature': temperature, 'Prediction': f_prediction*(10**9)}
 
 
 def image_base64(im):

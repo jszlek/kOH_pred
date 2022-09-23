@@ -7,19 +7,19 @@ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 ## 1) Installation  
 Dependencies:  
-streamlit
-h2o
-java
+- `streamlit`  
+- `h2o`  
+- `java`  
 
-After running:   
+Running the application:   
 (on linux)  
 `python -m streamlit run ./main_page.py`  
 (on Windows)  
 ``
 
-You can view your Streamlit app in your browser.
-  Local URL: http://localhost:8501
-  Network URL: http://10.66.37.51:8501
+You can view your Streamlit app in your browser:  
+  - Local URL: http://localhost:8501  
+  - Network URL: http://10.66.37.51:8501
 ## 2) Usage
-
+- move to sidebar ''
 ## 3) References
