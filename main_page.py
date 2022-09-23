@@ -35,13 +35,17 @@ st.markdown(
 )
 
 # page content
-st.markdown("### Homepage")
+st.markdown("### Main page")
 st.markdown('Application kOH_pred is used to predict an aqueous OH kinetics of saturated alcohols.')
 st.markdown('This application is one of the results presented in publication: ')
 st.markdown('_Temperature-dependent aqueous OH kinetics of saturated alcohols; new structure-activity relationship models and atmospheric lifetimes_')
 st.markdown('by: _Bartłomiej Witkowski, Priyanka Jain, Jakub Szlęk, Beata Wileńska, and Tomasz Gierczak_')
 st.markdown('')
 st.markdown('Please proceed to other pages (sidebar)')
+st.markdown('### Instructions')
+HtmlFile = open("pages/Instructions.html", 'r', encoding='utf-8')
+source_code = HtmlFile.read()
+st.markdown(source_code,unsafe_allow_html=True)
 st.write('### Summary')
 st.markdown('kOH_pred, prediction of aqueous OH kinetics of saturated alcohols.')
 st.markdown('Copyright (C) 2022 Jakub Szlęk')
