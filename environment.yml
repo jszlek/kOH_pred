@@ -236,5 +236,3 @@ dependencies:
   - zlib=1.2.12=h166bdaf_1
   - zstd=1.5.2=h8a70e8d_2
 
-pip:
-  numpy"<=1.23.0"
