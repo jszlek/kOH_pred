@@ -7,7 +7,7 @@ from PATHS import MODEL
 # run H2O server
 @st.cache
 def run_server_and_load_model():
-    h2o.init(max_mem_size="64M")
+    h2o.init(max_mem_size="128M")
     my_path = MODEL
     model = h2o.load_model(my_path)
     return model
