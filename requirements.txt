@@ -13,3 +13,4 @@ pyarrow==8.0.0
 pycairo==1.21.0
 streamlit==1.17.0
 webencodings==0.5.1
+rdkit
