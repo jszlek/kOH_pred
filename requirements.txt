@@ -1,7 +1,7 @@
 blinker==1.4
 certifi==2022.12.7
 commonmark==0.9.1
-h2o==3.36.0.2
+h2o>3.44.0.2
 ipython-genutils==0.2.0
 mordred==1.2.0
 munkres==1.1.4
